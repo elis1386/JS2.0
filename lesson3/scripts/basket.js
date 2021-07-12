@@ -1,22 +1,56 @@
 'use strict';
 class Basket {
     /**
-     * 
-     * @param {number} id  уникальный идентификатор
-     * @param {string} image название файла с картинкой
-     * @param {string} name имя товара
-     * @param {number} price цена товара
      * @param {string} icon путь до иконки
      * @param {number} totalPrice цена всех товаров
      */
-    constructor(id, image, name, price, icon, totalPrice) {
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.price = price;
+    constructor(icon) {
+        this.products = [];
         this.icon = icon;
-        this.totalPrice = totalPrice;
+        this.totalPrice = 0;
     }
+
+    /**
+    * Метод возвразает index продукта по его id.
+    * @param {number} productId
+    */
+    getProductIndex(productId) {
+        let productIndex = products.findIndex((product) => {
+            product.id === productId;
+        });
+        return productIndex;
+    }
+    /**
+    * Метод возвразает продукт по его.
+    * @param {number} productId
+    */
+    getProduct(productId) {
+        let product = products.find((product) => {
+            product.id === productId;
+        });
+        return product;
+    }
+
+    // продукт в корзине
+    add(productId) {
+        let index = this.getProductIndex(productId);
+        let product = this.getProduct(productId)
+        if (index != -1) {
+            this.products.push(product);
+            product.quantity = 1;
+        } else {
+            this.products[index].quantity++;
+        }
+
+        this.updategetTotalSum()
+    }
+
+    updategetTotalSum() {
+        this.totalPrice = this.products.reduce((sum, product) => {
+            sum + product.price * product.quantity;
+        }, 0);
+    }
+    remove()
 }
 
 const openBasketBtn = document.querySelector('cart-dropdown');
@@ -27,17 +61,6 @@ openBasketBtn.addEventListener('click', function () {
 let basket = {};
 
 
-/**
- * Метод добавляет продукт в объект basket.
- * @param {number} productId
- */
-function addProductToObject(productId) {
-    if (!(productId in basket)) {
-        basket[productId] = 1;
-    } else {
-        basket[productId]++;
-    }
-}
 /**
  * Функция срабатывает когда нужно отрисовать продукт в корзине.
  * @param {number} productId
@@ -112,11 +135,5 @@ function deleteAndRenderTotalBasketSum() {
 
 /**
  * эта функц срабатывает когда добавляется новый товар в корзину.
- * @param {number} productId 
+ * @param {number} productId
  */
-function addProductIntoBasket(productId) {
-    addProductToObject(productId);
-    increaseProductCount(productId)
-    renderProductInBasket(productId);
-    calculateAndRenderTotalBasketSum();
-}
