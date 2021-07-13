@@ -1,139 +1,99 @@
 'use strict';
-class Basket {
-    /**
-     * @param {string} icon путь до иконки
-     * @param {number} totalPrice цена всех товаров
-     */
-    constructor(icon) {
+export class Basket {
+    constructor() {
         this.products = [];
-        this.icon = icon;
         this.totalPrice = 0;
+        this.container = document.querySelector('.cart-dropdown_items');
+        this.totalPriceContainer = document.querySelector('.total:last-child');
+        this.openBasketBtn = document.querySelector('.cart-dropdown');
+        this.basketEl = document.querySelector('.cart-dropdown_menu_box');
+
     }
 
+
     /**
-    * Метод возвразает index продукта по его id.
-    * @param {number} productId
-    */
-    getProductIndex(productId) {
+        * Метод возвращает index продукта по его id.
+        * @param {number} productId
+        */
+    #getProductIndex(productId) {
         let productIndex = products.findIndex((product) => {
             product.id === productId;
         });
         return productIndex;
     }
-    /**
-    * Метод возвразает продукт по его.
-    * @param {number} productId
-    */
-    getProduct(productId) {
-        let product = products.find((product) => {
-            product.id === productId;
-        });
-        return product;
-    }
-
     // продукт в корзине
     add(productId) {
         let index = this.getProductIndex(productId);
-        let product = this.getProduct(productId)
+        let product = this.products[index].quantity;
         if (index != -1) {
             this.products.push(product);
             product.quantity = 1;
+            this.products.push(product);
         } else {
             this.products[index].quantity++;
         }
 
-        this.updategetTotalSum()
+        this.render();
     }
 
-    updategetTotalSum() {
+    #updateTotalSum() {
         this.totalPrice = this.products.reduce((sum, product) => {
             sum + product.price * product.quantity;
         }, 0);
     }
-    remove()
-}
 
-const openBasketBtn = document.querySelector('cart-dropdown');
-const basketEl = document.querySelector('.cart-dropdown_menu_box');
-openBasketBtn.addEventListener('click', function () {
-    basketEl.classList.toggle('hidden');
-})
-let basket = {};
+    // id product in basket
 
+    remove(productId) {
+        let index = this.getProductIndex(productId);
+        if (index == -1) {
+            return;
+        } else {
+            let productQuantity = this.products[index].quantity;
+            if (productQuantity > 1) {
+                this.products[index].quantity--;
+            } else {
+                this.product.split(index, 1);
+            }
+        }
 
-/**
- * Функция срабатывает когда нужно отрисовать продукт в корзине.
- * @param {number} productId
- */
-function renderProductInBasket(productId) {
-    let productExist = document.querySelector(`.productCount[data-productId="${productId}"]`);
-    if (productExist) {
-        increaseProductCount(productId);
-        recalculateSumForProduct(productId);
-    } else {
-        renderNewProductInBasket(productId);
+        this.render();
+    }
+    open() {
+        openBasketBtn.addEventListener('click', function () {
+            basketEl.classList.toggle('hidden');
+        });
+    }
+    #render() {
+        this.updateTotalSum();
+        let totalItems = "";
+        let currentItem = "";
+        for (let item in this.products) {
+            currentItem = `
+               <div class="cart-dropdown_item data-productId = "${item.id}">
+                   <div class="cart-dropdown_item_photo">
+                       <img src="img/${item.image}">
+                   </div>
+                   <div class="item-description">
+                       <h2>${item.name}</h2>
+                       <p>${item.quantity} x $${item.price}</p>
+                   </div>
+                   <div class="icon">
+                       <i class="fas fa-times-circle"></i>
+                   </div>
+               </div>
+               `;
+            totalItems += currentItem;
+        }
+        this.container.innerHTML = totaIitems;
+        this.totalPriceContainer.innerHTML = '$' + this.totalPrice;
+
     }
 }
 
 
-/**
- * Функция отрисовывает новый товар в корзине.
- * @param {number} productId
- */
-function renderNewProductInBasket(productId) {
-    let productRow = `
-    <div class="cart-dropdown_item">
-        <div class="cart-dropdown_item_photo">
-            <img src="img/cart-dropdown-photo1.png">
-        </div>
-        <div class="item-description">
-            <h2>Rebox Zane</h2>
-            <p>1 x $250</p>
-        </div>
-        <div class="icon">
-            <i class="fas fa-times-circle"></i>
-        </div>
-    </div>
-    `
-}
-
-/**
- * Метод увеличивает количество товаров в строке в корзине.
- * @param {number} productId
- */
-function increaseProductCount(productId) {
-    const productCountEl = document.querySelector(`.productCount[data-productId="${productId}"]`);
-    productCountEl.textContent++;
-}
 
 
-/**
- * Метод пересчитывает стоимость товара умноженное на количество товара
- * в корзине.
- * @param {number} productId
- */
-function recalculateSumForProduct(productId) {
-    basketCounterEl.textContent++;
-}
 
-/**
- * Метод пересчитывает общую стоимость корзины и выводит это значение на страницу.
- */
-function calculateAndRenderTotalBasketSum() {
-    let totalSum = 0;
-    for (let productId in basket) {
-        totalSum += basket[productId] * products[productId].price;
-    }
-    basketTotalValueEl.textContent = totalSum.toFixed(2);
-}
-/**
- * Метод удаляет товар из корзины и пересчитывает общую сумму.
- */
-function deleteAndRenderTotalBasketSum() {
 
-}
 
-/**
- * эта функц срабатывает когда добавляется новый товар в корзину.
- * @param {number} productId
- */

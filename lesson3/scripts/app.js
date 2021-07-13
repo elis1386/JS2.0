@@ -1,3 +1,9 @@
 'use strict';
+import Basket from './basket';
+import { productsList } from './products';
+import Product from './products';
 
-// let boxProductsEl = document.querySelector('.box-product').insertAdjacentElement('afterbegin', '<div class = "box-productEl"</div>');
+
+const basket = new Basket();
+const product = new Product(productsList, basket.add);
+product.renderProducts();
