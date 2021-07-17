@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+  <script>
+    "use strict";
+
+    class Hamburger {
+      constructor(size, stuffing, topping) {
+        this.size = size;
+        this.stuffing = stuffing;
+        this.topping = topping;
+
+      }
+
+      static get SMALLPRICE() { return 50 }//цена маленького гамбургера
+      static get LARGEPRICE() { return 100 }//цена большого гамбургера
+      static get SALADPRICE() { return 20 }//цена салата
+      static get CHEESEPRICE() { return 10 }//цена сыра
+      static get POTATOPRICE() { return 15 }//цена картошки
+      static get MAYONEZPRICE() { return 20 }//цена майонеза
+      static get SPICEPRICE() { return 15 }//цена специй
+
+      addStuffin() {
+        let stufPrice = 0;
+        if (this.stuffing == 'salad') { stufPrice += Hamburger.SALADPRISE; }
+        if (this.stuffing == 'cheese') { stufPrice += Hamburger.CHEESEPRISE; }
+        if (this.stuffing == 'potato') { stufPrice += Hamburger.POTATOPRISE; }
+        return stufPrise;
+      }
+
+
+      addTopping() {
+        let topPrice = 0;
+        if (this.topping == 'mayonez') { topPrice += Hamburger.MAYONEZPRICE; }
+        if (this.topping == 'spice') { topPrice += Hamburger.SPICEPRICE; }
+
+        return topPrice;
+      }
+
+      calculatePrice() {
+        if (this.size == 'small') return Hamburger.SMALLPRICE + this.addStuffin();
+        if (this.size == 'large') return Hamburger.LARGEPRICE + this.addStuffin();
+        if (this.stuffing == 'salad') return Hamburger.SALADPRICE + this.addStuffin();
+        if (this.stuffing == 'cheese') return Hamburger.CHEESEPRICE + this.addStuffin();
+        if (this.stuffing == 'potato') return Hamburger.POTATOPRICE + this.addStuffin();
+        if (this.topping == 'mayonez') return Hamburger.MAYONEZPRICE + this.addTopping();
+        if (this.topping == 'spice') return Hamburger.SPICEPRICE + this.addTopping();
+        // addToppin();
+        else return null;
+      };
+
+    // const sizeBig = 'big';
+    // const sizeSmall = 'small';
+
+    // class Hamburger {
+    //   constructor() {
+    //     this.sizes = {
+    //       'big': 100,
+    //       'small': 50,
+    //     };
+    //     this.size = '';
+    //     this.stuffing = [];
+    //     this.topping = [];
+    //   }
+    //   calculatePrice() {
+    //     let price = this.sizes[this.size];
+    //     this.stuffing.forEach(element => {
+    //       this.stuffings[element] + price
+    //     });
+    //     return price;
+    //   }
+    //   calculateCalories() {
+
+    //     return calories;
+    //   }
+
+    // }
+
+
+    let humburger = new Hamburger();
+    console.log(humburger.calculatePrice());
+
+
+
+  </script>
+</body>
+
+</html>
