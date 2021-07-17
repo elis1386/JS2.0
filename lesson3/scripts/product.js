@@ -3,16 +3,12 @@
 export class Product {
     /**
      * 
-     * @param {number} id  уникальный идентификатор
-     * @param {string} image название файла с картинкой
-     * @param {string} name имя товара
-     * @param {number} price цена товара
+     * @param {array} products
+     * @param {function} addToCartCallback
      */
-    constructor(id, image, name, price) {
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.price = price;
+    constructor(products, addToCartCallback) {
+        this.products = products;
+        this.callback = addToCartCallback;
     }
 
     #getProductMarkup(product) {
@@ -52,8 +48,8 @@ export class Product {
             a.addEventListener('click', addedProductHandler);
         });
     }
-    #addedProductHandler(event, callback) {
+    #addedProductHandler(event) {
         const productId = event.currentTarget.getAttribute('data-productId');
-        callback(productId);
+        this.callback(productId);
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-const products = [
+export const products = [
     new ProductDTO(
         0,
         'item-1.png',

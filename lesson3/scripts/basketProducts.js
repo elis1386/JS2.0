@@ -1,6 +1,6 @@
 'use strict';
 
-const basketProducts = [
+export const basketProducts = [
     new Basket(
         0,
         'cart-dropdown-photo1.png',
