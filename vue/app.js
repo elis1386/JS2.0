@@ -20,11 +20,23 @@ new Vue({
         product: products[0],
         selectedProductIndex: 0,
         phoneVisibl: false,
+        search: '',
+        modalVisibl: false,
     },
     methods: {
         selectProduct: function (index) {
             this.product = products[index]
             this.selectedProductIndex = index
+        }
+    },
+    computed: {
+        phoneBtnText() {
+            return this.phoneVisibl ? 'Hide price' : 'Show price'
+        },
+        filteredProducts() {
+            return this.products.filter(product => {
+                return product.name.indexOf(this.search) > -1
+            })
         }
     }
 })
