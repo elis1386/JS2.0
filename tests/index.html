@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        // RIDDLE
+        // const riddle = parseInt(Math.random() * 100);
+
+        // function guess(num) {
+        //     let answer = parseInt(prompt('Guess a number from 0 to 99'));
+        //     if (answer > num) {
+        //         alert('Number to big');
+        //     } else if (answer < num) {
+        //         alert('Number to small');
+        //     } else if (answer == num) {
+        //         alert('Got it!');
+        //         return;
+        //     }
+        //     guess(num);
+        // }
+
+        // guess(riddle);
+
+
+
+        //RANDOM PASSWORD
+        // don't work
+        // function gen_password(len) {
+        //     let password = "";
+        //     let symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!№;%:?*()_+=";
+        //     for (let i = 0; i < len; i++) {
+        //         password += symbols.charAt(Math.floor(Math.random() * symbols.length));
+        //     }
+        //     console.log(password);
+        // }
+        // gen_password();
+
+
+
+        // function generatePassword() {
+        //     let length = 8;
+        //     let symbols = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        //     let password = "";
+        //     for (let i = 0, n = symbols.length; i < length; ++i) {
+        //         password += symbols.charAt(Math.floor(Math.random() * n));
+        //     }
+        //     console.log(password);
+        // }
+
+        // generatePassword();
+
+
+
+        // function generatePassword() {
+        //     prompt('Here is your shiny new password:',
+        //         Math.random().toString(36).slice(2)
+        //     );
+        // }
+        // generatePassword();
+
+        // CHECK PASSWORD
+        // const password = prompt('input ypur password including digits and leters more than 5');
+        // const lengthMore5 = password.length > 5;
+        // const checkDigits = /\d+/gm.test(password);
+        // const checkLetters = /[a-zA-Z]+/gm.test(password);
+        // if (lengthMore5 && checkDigits && checkLetters) {
+        //     alert('your password is good')
+        // } else {
+        //     alert('your password is bad')
+        // }
+
+
+
+        // function mathOperation(arg1, arg2, operation) {
+        //     switch (operation) {
+        //         case 'sum':
+        //             return arg1 + arg2;
+
+        //         case 'minus':
+        //             return arg1 - arg2;
+
+        //     }
+        // }
+        // let inSum = mathOperation(32, 12, 'sum');
+        // let inMinus = mathOperation(24, 3, 'minus');
+
+        // 5 > 4 true
+        // "ананас" > "яблоко" false
+        // "2" > "12" true
+        // undefined == null true
+        // undefined === null false
+        // null == "\n0\n" true
+        // null === +"\n0\n" false
+
+
+        // let age = prompt('How old are you?');
+        // let accessAllowed = age > 18 ? true : false;
+
+        // // if (age > 18) {
+        // //     accessAllowed = true;
+        // // } else {
+        // //     accessAllowed = false;
+        // // }
+
+        // alert(accessAllowed);
+        // let message;
+        // if (age < 3) {
+        //     message = 'Здравствуй, малыш!';
+        // } else if (age < 18) {
+        //     message = 'Привет!';
+        // } else if (age < 100) {
+        //     message = 'Здравствуйте!';
+        // } else {
+        //     message = 'Какой необычный возраст!';
+        // }
+
+        // alert(message);
+
+        // // my code
+        //         let question = prompt('What the official name of JavaScript?');
+        //         let answer = 'ECMAScript';
+        //         if (question === answer) {
+        //             alert('Got it!');
+        //         } else {
+        //             alert("Reealy don't know? ECMAScript!");
+        //         };
+
+        // // code from book
+        //         let value = prompt('Какое "официальное" название JavaScript?', '');
+
+        //         if (value == 'ECMAScript') {
+        //             alert('Верно!');
+        //         } else {
+        //             alert('Не знаете? ECMAScript!');
+        //         }
+
+        // let value = prompt("input a digit");
+        // if (value > 0) {
+        //     alert(1);
+        // } else if (value < 0) {
+        //     alert(-1);
+        // } else if (value = 0) {
+        //     alert(0);
+        // }
+
+        // let message = (login == 'Сотрудник') ? 'Привет' :
+        //     (login == 'Директор') ? 'Здравствуйте' :
+        //         (login == '') ? 'Нет логина' :
+        //             '';
+        // let i;
+        // for (let i = 0; i < 5; ++i) alert(i);
+
+
+        //При помощи цикла for выведите чётные числа от 2 до 10.
+        // for (let i = 2; i < 10; i++) {
+        //     if (i % 2)
+        //         alert(i);
+        // }
+
+        //Перепишите код, заменив цикл for на while, без изменения поведения цикла.
+        // for (let i = 0; i < 3; i++) {
+        //     alert(`number ${i}!`);
+        // }
+
+        // // my code
+        // let i = 0;
+        // while (i < 3) {
+        //     alert(`number ${i++}!`)
+        // }
+        // // code from book
+        // let i = 0;
+        // while (i < 3) {
+        //     alert(`number ${i}!`);
+        //     i++;
+        // }
+
+        // let num;
+        // do {
+        //     num = prompt('Введите число, большее 100');
+        // } while (num < 100);
+
+
+        let n = 10;
+
+        for (let i = 2; i <= n; i++) {
+            for (let j = 2; j < i; j++) {
+                if (i % j == 0) continue
+            }
+        }
+        alert(i);
+
+    </script>
+</body>
+
+</html>
